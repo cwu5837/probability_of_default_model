@@ -1,0 +1,46 @@
+
+table.dataTable tr.selected td, table.dataTable td.selected {
+  background-color: #5bbeaf !important;
+  color: #ffffff !important;
+  }
+
+.content-wrapper,
+.right-side {
+  background-color: rgb(255, 255, 255);
+}
+
+.skin-blue .main-header .navbar {
+  background-color: #80cdc1;
+}
+.skin-blue .main-header .logo {
+  background-color: #018571;
+}
+.skin-blue .main-header .logo:hover {
+  background-color: #80cdc1;
+}
+.skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li:hover>a {
+  border-left-color: #018571;
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+  background-color: #018571;
+}
+.alert-danger, .alert-error, .bg-red, .callout.callout-danger, .label-danger, .modal-danger .modal-body {
+  background-color: #ee6557!important;
+}
+.box.box-solid.box-primary>.box-header {
+  color: #fff;
+    background: #018571;
+    background-color: #018571;
+}
+.nav-tabs-custom>.nav-tabs>li.active {
+  border-top-color: #018571;
+}
+::selection {
+  background: #018571;
+    color: #fff;
+}
+a {
+  color: #018571;
+}
+#rho {width: 83.33%;}
+
