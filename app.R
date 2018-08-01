@@ -1,4 +1,4 @@
-setwd("H:/trans mtx showcase")
+
 
 # load data
 load("data/00 loan.RData")

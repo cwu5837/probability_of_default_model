@@ -5,7 +5,7 @@ output$macroplot <- renderPlotly({
   
   
   
-  plot_ly(x=~Z$zlist$Period,width=860,height = 500) %>% add_lines(
+  plot_ly(x=~Z$zlist$Period) %>% add_lines(
                                  y=~round(Z$zlist$Zscore, 4), name="Z Score",
                                  line = list(shape = "spline",color="#019882"))%>%
     add_lines( 

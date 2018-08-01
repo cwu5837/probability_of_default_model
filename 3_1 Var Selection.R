@@ -18,7 +18,7 @@ output$corrplot<-renderPlotly({
           y=rownames(corr),
           z=round(corr,4),
           type="heatmap",
-          colorbar = list(title = "Correlation",len=0))%>%
+          colorbar = list(title = "Correlation"))%>%
     layout(xaxis = list(side = "bottom"),
            yaxis = list(side = "left"),
            margin = list(r = 0, t = 0, l = 135, b = 135)

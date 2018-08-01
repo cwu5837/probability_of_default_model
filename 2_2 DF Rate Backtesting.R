@@ -3,7 +3,7 @@
 
 output$dfplot <- renderPlotly({
   
-  plot_ly(df_backtest,width=860,height = 500) %>% add_lines(x=~Year, 
+  plot_ly(df_backtest) %>% add_lines(x=~Year, 
                                  y=~round(Backtesting*100, 2), name="Backtesting",
                                  line = list(shape = "spline",color="#d8b365"))%>%
     add_trace(x=~Year, 

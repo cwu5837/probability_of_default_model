@@ -44,3 +44,7 @@ a {
 }
 #rho {width: 83.33%;}
 
+caption {
+  caption-side: bottom; 
+  text-align: center;
+}

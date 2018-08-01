@@ -3,7 +3,7 @@
 
 output$zplot <- renderPlotly({
   
-  p=plot_ly(Z$zlist,width=860,height = 500) %>% add_lines(x=~Period, 
+  p=plot_ly(Z$zlist) %>% add_lines(x=~Period, 
                                  y=~round(Zscore, 4), 
                                  line = list(shape = "spline",color='rgb(11, 118, 123)'), 
                                  hoverinfo = "text",
@@ -34,8 +34,8 @@ output$rho <- renderInfoBox({
 # ztable
 output$ztable <- renderDataTable({
   
-  data = data.frame(Year = paste("     ",as.character(Z$zlist$Period)),
-                    ZScore = round(Z$zlist$Zscore, 4))
+  data = data.frame("Year" = Z$zlist$Period,
+                    "ZScore" = round(Z$zlist$Zscore, 4))
   
   datatable(data, 
             rownames = FALSE, 

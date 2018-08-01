@@ -27,7 +27,7 @@ output$z3plot <- renderPlotly({
                                            text=~Year,
                                            marker = list(color = "#67a9cf"))%>%
                                     layout(xaxis=list(title="",showgrid=F),yaxis=list(title=""),
-                                           legend = list(y = -0.1,orientation = 'h'),
+                                           legend = list(orientation = 'l'),
                                            margin = list(r = 50),
                                            shapes = list(type = "line", x0 = "2016", x1 = "2016", y0 = min, y1 = max, line = list(color = "gray", dash = "dash", width = 0.5)),
                                            hovermode = "x")%>%
@@ -83,7 +83,7 @@ output$df3plot <- renderPlotly({
               text=~Year,
               marker = list(color = "#67a9cf"))%>%
     layout(xaxis=list(title="",showgrid=F),yaxis=list(title="",ticksuffix = "%"),
-           legend = list(y = -0.1,orientation = 'h'),
+           legend = list(orientation = 'l'),
            margin = list(r = 50),
            shapes = list(type = "line", x0 = "2016", x1 = "2016", y0 = min, y1 = max, line = list(color = "gray", dash = "dash", width = 0.5)),
            hovermode = "x")%>%
