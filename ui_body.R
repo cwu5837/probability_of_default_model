@@ -62,48 +62,51 @@ body <- dashboardBody(
             # page title
             h3("Z Score"),
             # z score plot
-            column(9, 
-                   fluidRow(plotlyOutput("zplot",height=510),br(),
+            fluidRow(column(8, 
+                            plotlyOutput("zplot",height = 480),br(),
                             helpText("Z Scores' historical movements describe past credit conditions. 
-                              In good years Z Score will be positive, implying for each initial 
-                              credit rating a lower than average default rate and a higher than 
-                              average ratio of upgrades to downgrades. In bad years, the reverse will be true. 
-                              For example, Z remains negative for 2007-2009. This mirrors the general decline 
-                              in credit ratings in the Global Financial Crisis."))
-                            ),
-            column(3,align="center",
-                   # rho
-                   fluidRow(infoBoxOutput("rho")),
-                   # z score table
-                   fluidRow(box(dataTableOutput("ztable"), 
-                                title = "Z Score Table",
-                                status = "primary",
-                                solidHeader = TRUE,
-                                width = 10, height = 500)
-                   ))
-                            ),
+                                              In good years Z Score will be positive, implying for each initial 
+                                              credit rating a lower than average default rate and a higher than 
+                                              average ratio of upgrades to downgrades. In bad years, the reverse will be true. 
+                                              "),
+                            helpText("For example, Z remains negative for 2007-2009. This mirrors the general decline 
+                                              in credit ratings in the Global Financial Crisis.")
+                                     ),
+                     column(4,align="center",
+                            # rho
+                            fluidRow(infoBoxOutput("rho")),
+                            # z score table
+                            fluidRow(box(dataTableOutput("ztable"), 
+                                         title = "Z Score Table",
+                                         status = "primary",
+                                         solidHeader = TRUE,
+                                         width = 10, height = 500)
+                            )))
+            ),
     # ------------------------------------------------------------------------------------------------------------
     # df rate backtesting
     tabItem(tabName = "df_backtest",
             # page title
             h3("Default Rate Backtesting"),
-            # df_rt plot
-            column(9,
-                   plotlyOutput("dfplot",height=510),
-                   helpText("Given the Z Score of a specific year and its corresponding rho, 
+            fluidRow(
+              # df_rt plot
+              column(8,
+                     plotlyOutput("dfplot",height = 480),
+                     helpText("Given the Z Score of a specific year and its corresponding rho, 
                               we can re-create the transition matrix of that year. 
                               From the transition matrix, the default rate can be derived. 
                               The table on the right side shows the actual default rates and 
                               the derived default rates using Z Scores."),
-                   helpText("The derived default rates are very close to the actual values, 
+                     helpText("The derived default rates are very close to the actual values, 
                               meaning that the Z Scores are able to capture the features of default events.")),
-            column(3,align="center",
-                   # df rt table
-                   fluidRow(box(dataTableOutput("dftable"),
-                                title = "Default Rate Table",
-                                status = "primary",
-                                solidHeader = TRUE,
-                                width = 12, height = 580))
+              column(4,align="center",
+                     # df rt table
+                     fluidRow(box(dataTableOutput("dftable"),
+                                  title = "Default Rate Table",
+                                  status = "primary",
+                                  solidHeader = TRUE,
+                                  width = 11, height = 580))
+              )
             )
     ),
     # ------------------------------------------------------------------------------------------------------------    
@@ -111,38 +114,40 @@ body <- dashboardBody(
     tabItem(tabName = "macro",
             # page title
             h3("Z Score vs. Macro Variables"),
-            # macro plot
-            column(9,
-                   plotlyOutput("macroplot",height=510),
-                   helpText("* Data Source: Federal Reserve"),
-                   helpText("The market often moves ahead of an upgrade or downgrade. Combinations of a set of 
-                            macroeconomic variables can be used to predict dependent variable Z Score.")),
-            column(3,
-                   align="center",
-                   fluidRow(
-                     helpText("Select a macroeconomic variable:"),
-                     selectInput(inputId = "macro", 
-                               label = NULL,
-                               selected = NULL,
-                               choices = c("Unemployment Rate" = "lag0_Unemp.Rt",
-                                           "BBB Corporate Rate" = "lag0_BBB.Rt",
-                                           "Mortgage Rate" = "lag0_Mort.Rt",
-                                           "Prime Rate" = "lag0_Prime.Rt",
-                                           "Dow Jones Stock Market Index" = "lag0_DJIA",
-                                           "Market Volatility Index (VIX)" = "lag0_VIX",
-                                           "Real GDP Growth Rate" = "lag0_RGDP.Ygr",
-                                           "Nominal GDP Growth Rate" = "lag0_NGDP.Ygr",
-                                           "Nominal Disposable Income Growth Rate" = "lag0_NDI.Ygr",
-                                           "Real Disposable Income Growth Rate" = "lag0_RDI.Ygr",
-                                           "Consumer Price Index Rate" = "lag0_CPI.Ygr",
-                                           "BBB Spread" = "lag0_BBB.Spd"
-                               ))),
-                   # Z vs macro table
-                   fluidRow(box(dataTableOutput("macrotable"),
-                                title = "Default Rate Table",
-                                status = "primary",
-                                solidHeader = TRUE,
-                                width = 13, height = 500))
+            fluidRow(
+              # macro plot
+              column(8,
+                     plotlyOutput("macroplot",height=480),
+                     helpText("* Data Source: Federal Reserve"),
+                     helpText("The market often moves ahead of an upgrade or downgrade. Combinations of a set of 
+                              macroeconomic variables can be used to predict dependent variable Z Score.")),
+              column(4,
+                     align="center",
+                     fluidRow(
+                       helpText("Select a macroeconomic variable:"),
+                       selectInput(inputId = "macro", 
+                                   label = NULL,
+                                   selected = NULL,
+                                   choices = c("Unemployment Rate" = "lag0_Unemp.Rt",
+                                               "BBB Corporate Rate" = "lag0_BBB.Rt",
+                                               "Mortgage Rate" = "lag0_Mort.Rt",
+                                               "Prime Rate" = "lag0_Prime.Rt",
+                                               "Dow Jones Stock Market Index" = "lag0_DJIA",
+                                               "Market Volatility Index (VIX)" = "lag0_VIX",
+                                               "Real GDP Growth Rate" = "lag0_RGDP.Ygr",
+                                               "Nominal GDP Growth Rate" = "lag0_NGDP.Ygr",
+                                               "Nominal Disposable Income Growth Rate" = "lag0_NDI.Ygr",
+                                               "Real Disposable Income Growth Rate" = "lag0_RDI.Ygr",
+                                               "Consumer Price Index Rate" = "lag0_CPI.Ygr",
+                                               "BBB Spread" = "lag0_BBB.Spd"
+                                   ))),
+                     # Z vs macro table
+                     fluidRow(box(dataTableOutput("macrotable"),
+                                  title = "Default Rate Table",
+                                  status = "primary",
+                                  solidHeader = TRUE,
+                                  width = 12, height = 500))
+              )
             )
             ),
     # ------------------------------------------------------------------------------------------------------------    
@@ -283,53 +288,61 @@ body <- dashboardBody(
             h3("2-Factor Model"),
             tabBox(width = "100%",
                    tabPanel("Z Score",
-                            fluidRow(column(6,
-                                   plotlyOutput("z2plot",height = 480),
-                                   uiOutput("f2")
-                                   # uiOutput("adjr2")
-                                   ),
-                                   column(6,
-                                          helpText("Z Score Table",align="center"),
-                                          dataTableOutput("forecast_z2"),
-                                          helpText("*Click on a specific Z Score to display a corresponding transition matrix."),
-                                          dataTableOutput("mtx2"))
-                                   )
+                            fluidRow(column(10, offset = 1,
+                                   plotlyOutput("z2plot",height = 520)
+                                   )),
+                            fluidRow(column(6,offset=3,
+                                            uiOutput("f2"))),
+                            fluidRow(
+                              column(10, offset = 1,
+                                     helpText("Z Score Table",align="center"),
+                                     dataTableOutput("forecast_z2"),
+                                     helpText("*Click on a specific Z Score to display a corresponding transition matrix.",align="center"),
+                                     dataTableOutput("mtx2"))
+                            )
                             ),
                    tabPanel("Default Rate",
-                            fluidRow(column(6,
-                                   plotlyOutput("df2plot",height = 480)),
-                                   column(6,
-                                          helpText("Default Rate Table",align="center"),
-                                          dataTableOutput("forecast_df2")
-                                          )
-                                   )
+                            fluidRow(column(10, offset = 1,
+                                   plotlyOutput("df2plot",height = 480))),
+                            fluidRow(
+                              column(10,offset = 1,
+                                     helpText("Default Rate Table",align="center"),
+                                     dataTableOutput("forecast_df2")
+                              )
                             )
-                   )),
+                           )
+                         )
+                   ),
     # ------------------------------------------------------------------------------------------------------------    
     # 3 factor model
     tabItem(tabName = "three",
             h3("3-Factor Model"),
             tabBox(width = "100%",
                    tabPanel("Z Score",
-                            fluidRow(column(6, 
-                                            plotlyOutput("z3plot",height = 480),
-                                            uiOutput("f3")
-                                            # uiOutput("adjr3")
-                                            ),
-                                     column(6,
-                                            helpText("Z Score Table",align="center"),
-                                            dataTableOutput("forecast_z3"),
-                                            helpText("*Click on a specific Z Score to display a corresponding transition matrix."),
-                                            dataTableOutput("mtx3"))
+                            fluidRow(column(10, offset = 1,
+                                            plotlyOutput("z3plot",height = 520)
                             )),
+                            fluidRow(column(6,offset=3,
+                                            uiOutput("f3"))),
+                            fluidRow(
+                              column(10, offset = 1,
+                                     helpText("Z Score Table",align="center"),
+                                     dataTableOutput("forecast_z3"),
+                                     helpText("*Click on a specific Z Score to display a corresponding transition matrix.",align="center"),
+                                     dataTableOutput("mtx3"))
+                            )
+                   ),
                    tabPanel("Default Rate",
-                            fluidRow(column(6,
-                                            plotlyOutput("df3plot",height = 480)),
-                                     column(6,
-                                            helpText("Default Rate Table",align="center"),
-                                            dataTableOutput("forecast_df3")
-                                            )
-                            ))
-            ))
+                            fluidRow(column(10, offset = 1,
+                                            plotlyOutput("df3plot",height = 480))),
+                            fluidRow(
+                              column(10,offset = 1,
+                                     helpText("Default Rate Table",align="center"),
+                                     dataTableOutput("forecast_df3")
+                              )
+                            )
+                   )
+            )
+            )
     ))
 
